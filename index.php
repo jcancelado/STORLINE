@@ -1,41 +1,272 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-<?php require_once "php/conexion.php"; ?>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>RAN</title>
-    <script src="ola"></script>
-    <script src="https://kit.fontawesome.com/acd7670049.js" crossorigin="anonymous"></script>
-    <link rel="shortcut icon" href="img/ran__1_-removebg-preview.png" type="image/x-icon">
+    <title>STORLINE - Gestor de Tiendas</title>
     <link rel="stylesheet" href="css/estilosprincipales.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet"> 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-auth {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-login, .btn-register {
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-login {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-login:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-register {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-register:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 80px);
+            color: white;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: slideInDown 0.8s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInUp 0.8s ease;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease 0.3s both;
+        }
+
+        .btn-cta {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-cta-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-cta-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-cta-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-cta-secondary:hover {
+            background: white;
+            color: #667eea;
+            transform: scale(1.05);
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Features Section */
+        .features {
+            background: white;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-cta {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-auth {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <div id="loader"class="hidden">
-        <img src="img/vectores/girauwu.png" alt="Loading...">
-      </div>
+    <!-- Header -->
     <header>
-        <a href="index.php" class="logo">
-            <img class="logo" src="img/ran__1_-removebg-preview.png" alt="Logo">
-          </a>
+        <div class="logo">🏪 STORLINE</div>
+        <nav class="nav-auth">
+            <a href="php/auth/login.php" class="btn-login">Iniciar Sesión</a>
+            <a href="php/auth/registro.php" class="btn-register">Registrarse</a>
+        </nav>
+    </header>
 
-        <nav class="head_titu">
-        
-           
-            <a href="" class="incioh">INICIO</a>
-            <a href="#sobreno">ACERCA DE</a>
-            <a href="php/inicio-registro/inicio.php">INICIAR SESIÓN</a>
-            <a href="#portafolio">SERVICIOS</a>
-            <a href="#footer">CONTACTO</a>
-            <a href="php/carro/index.php">PLANTAS</a>
-
-            <a href="index.php" class="logo">
-          </a>        </nav>
         <button id="toggle-nav" class="toggle-nav-btn">☰</button>
 
         <section class="textos-header">
@@ -49,160 +280,62 @@
             <div class="wave"></div>
          </div>
     </header>
-    <main>
-        <section class="contenedor sobre-nosotros" id="sobreno"> 
-            <h2 class="titulo">¿QUIENES SOMOS?</h2>
-            <div class="contenedor-sobre-nosotros">
-                <img src="img/vectores/orquidea.png" alt="" class="imagen-about-us">
-                <div class="contenido-textos">
-                    <h3><span>1</span>MISIÓN</h3>
-                    <p class="parrafo">Crear en las nuevas generaciones una  mas cultura ambiental por medio de aplicativos digitales con el fin de recalcar la importancia de la naturaleza.
 
-                    </p>
-                    <h3><span>2</span>VISIÓN</h3>
-                    <p class="parrafo">RAN se ve como una de las empresas mas influyentes en la industria de la naturaleza y software llegando a ser una de las empresas mas exitosas en este ámbito. </p>
-                </div>
-            </div>
-        </section>
-        <section id="portafolio" class="portafolio">
-            
-            <div class="contenedor">
-                <h2 class="titulo">plantas</h2>
-                <div class="galeria-port">
-                    <div class="imagen-port" id="po1">
-                        <img src="img/plantas/suculentas.jpg" alt="">
-                        <div class="hover-galeria" id="im1">
-                        <a href="php/carro/index.php?category=Suculentas">
-
-                            <img class='logo3'src="img/iconos/cactus (1).png" alt=""></a>
-                            <p>suculentas</p>
-                        </div>
-                    </div>
-                    <div class="imagen-port" id="po2">
-                        <img src="img/plantas/arreglofloral.jpg" alt="">
-                        <div class="hover-galeria"id="im2" >
-                            <img  src="img/iconos/flores.png" alt="">
-                            <p>Arreglos</p>
-                        </div>
-                    </div>
-                   <div class="imagen-port" id="po3">
-                        <img src="img/plantas/carnivora.png">
-                        <div class="hover-galeria" id="im3">
-                             <img  src="img/iconos/carne.png" alt=""></a>
-                            <p>CARNIVORAS</p>
-                        </div>
-                    </div>
-                    <div class="imagen-port" id="po4">
-                        <img src="img/fondos/portada.jpg" alt="holauwu">
-                        <div class="hover-galeria" id="im4">
-                            <img src="img/iconos/carne.png" alt="">
-                            <p>jardin</p>
-                        </div>
-                    </div>
-                    <div class="imagen-port" id="po5">
-                        <img src="img/fondos/7915180_3768851.jpg" alt="">
-                        <div class="hover-galeria" id="im5">
-                        <a href="php/carro/index.php?category=Interior">
-                            <img src="img/iconos/monstera.png" alt=""></a>
-                            <p>interior</p>
-                        </div>
-                    </div>
-                    <div class="imagen-port" id="po6">
-                        <img src="img/plantas/Imagen1.jpg" alt="">
-                        <div class="hover-galeria" id="im6">
-                        <a href="php/carro/index.php?category=Orquideas">
-                        <img src="img/iconos/orquid.png" alt=""></a>
-                            <p>orquidea</p>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </section>
-        <section class="clientes contenedor">
-            <h2 class="titulo">destacados</h2>
-            <div class="cards">
-                <div class="card" id="c2">
-                    <img src="img/fondos/flor-lirio-sobre-fondo-oscuro-al-generativo.jpg" alt="">
-                    <div class="contenido-texto-card">
-                        <h4>Lirio Blanco</h4>
-                        <p>Lirio elegante, perfecto para jardin. <br>Se ha vuelto tendencia por ser uno de los mejores regalos</p>
-                    </div>
-                </div>
-                <div class="card" id="c3">
-                    <img src="img/plantas/cereus-cactus-pot.jpg" alt="">
-                    <div class="contenido-texto-card">
-                        <h4>Cactus cinita</h4>
-                        <p>Este cactus es una de tus mejores opcionespara decorar tu escrito.¡Compralo ahora!</p>
-                    </div>
-                </div>
-                <div class="card" id="c2">
-                    <img src="img/plantas/monstera-deliciosa-plant-pot.jpg" alt="">
-                    <div class="contenido-texto-card">
-                        <h4>MONSTERA</h4>
-                        <p>Se ha vuelto una de las plantas mas influyentes en la cultura popular, además de ser perfecta para interiores</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="about-services">
-            <div class="contenedor">
-                <h2 class="titulo">LAS 3 CCC</h2>
-                <div class="servicio-cont">
-                    <div class="servicio-ind">
-                        <img src="img/vectores/regando-plantas.png" class="imagen-regadera" >
-                        <h3>CUIDADOS</h3>
-                        <p>RAN te ofrece los cuidador de tus plantas</p>
-                    </div>
-                    <div class="servicio-ind" id="num4">
-                        <img src="img/vectores/planta.png" alt="">
-                        <h3>CONCIENCIA</h3>
-                        <p>RAN busca influir este mundo maravilloso en tu corazon</p>
-                    </div>
-                    <div class="servicio-ind">
-                        <img src="img/vectores/hoja-de-monstera.png" alt="">
-                        <h3>CRECER</h3>
-                        <p>Como las orquideas RAN busca crecer, renacer y ponilizar</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-    <footer id="footer">
-        <div class="contenedor-footer">
-            <div class="content-foo">
-                <h4>Correo</h4>
-                <p>ranreinanectar@gmail.com</p>
-            </div>
-            <div class="content-foo">
-                <h4>Instagram</h4>
-              
-                <a href="https://www.instagram.com/_rannewlife/?igshid=YmMyMTA2M2Y%3D" target="_blank"class="iconoinsta"><i class="fa-brands fa-instagram"></i></a>
-            </div>
-            <div class="content-foo">
-                <h4>Facebook</h4>
-                <a href="https://web.facebook.com/profile.php?id=100091260855667" target="_blank" class="iconoinsta"><i class="fa-brands fa-facebook-f"></i></a>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>STORLINE</h1>
+            <p>Gestor completo de tiendas - Administra tus productos, clientes y deudas</p>
+            <div class="cta-buttons">
+                <a href="php/auth/registro.php" class="btn-cta btn-cta-primary">Crear Mi Tienda Ahora</a>
+                <a href="#features" class="btn-cta btn-cta-secondary">Conocer Más</a>
             </div>
         </div>
-        <h2 class="titulo-final">&copy; RAN | <br>José Luis Cancelado Castro <br> Estefany Daniela Martinez Niño<br>Nicolas Andres Bermeo Rodriguez<br>Juan Diego Salcedo García</h2>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="feature-card">
+            <div class="feature-icon">🏢</div>
+            <h3>Gestiona Múltiples Tiendas</h3>
+            <p>Crea y administra todas tus tiendas desde un único panel de control centralizado.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📦</div>
+            <h3>CRUD de Productos</h3>
+            <p>Administra tu inventario con facilidad. Crea, edita, elimina y controla el stock de tus productos.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">👥</div>
+            <h3>Gestión de Clientes</h3>
+            <p>Mantén un registro completo de tus clientes con toda su información de contacto.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">💰</div>
+            <h3>Control de Deudas</h3>
+            <p>Registra y controla las deudas de tus clientes. Seguimiento de pagos y vencimientos.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Reportes y Estadísticas</h3>
+            <p>Visualiza datos importantes sobre tus tiendas, productos y clientes en tiempo real.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Seguridad Garantizada</h3>
+            <p>Tu información está protegida con contraseñas encriptadas y sesiones seguras.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 STORLINE. Todos los derechos reservados.</p>
+        <p>Desarrollado para gestionar tu negocio de forma eficiente.</p>
     </footer>
 </body>
-<script>
-    // Ocultamos la pantalla de carga después de un cierto período de tiempo
-    window.addEventListener('load', function(){
-        const loader = document.getElementById('loader');
-        setTimeout(function(){
-            loader.classList.add('fadeOut');
-        }, 2000); // 2 segundos de tiempo de carga
-    });
-</script>
-<script>const toggleNavBtn = document.getElementById('toggle-nav');
-    const nav = document.querySelector('nav');
-    
-    toggleNavBtn.addEventListener('click', function() {
-      nav.classList.toggle('active');
-    });
-    </script>
 </html>
