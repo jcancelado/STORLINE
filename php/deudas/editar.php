@@ -86,10 +86,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="container">
-        <a href="index.php?tienda_id=<?php echo $tienda_id; ?>" class="back-link">← Volver a Deudas</a>
 
         <div class="form-container">
-            <h1>💰 Gestionar Deuda</h1>
+                    <a href="index.php?tienda_id=<?php echo $tienda_id; ?>" class="back-link">← REGRESAR</a>
+
+            <h1>GESTIONAR DEUDA</h1>
 
             <div class="deuda-info">
                 <p><strong>Cliente:</strong> <?php echo htmlspecialchars($deuda['cliente_nombre']); ?></p>

@@ -50,8 +50,10 @@ if ($total_tiendas > 0) {
     <!-- Header -->
     <header>
         <div class="header-left">
-            <h1>🏪 STORLINE</h1>
-            <p>Bienvenido, <?php echo htmlspecialchars($nombre); ?></p>
+             <a href="index.php">
+            <img src="../../img/logo.png" alt="STORLINE Logo" class="logo-img">
+        </a>
+            <h1>BIENVENIDO, <?php echo htmlspecialchars($nombre); ?></h1>
         </div>
         <div class="header-right">
             <a href="../auth/logout.php" class="btn-logout">Cerrar Sesión</a>
@@ -82,7 +84,7 @@ if ($total_tiendas > 0) {
 
         <!-- Section: Tiendas -->
         <div class="section-header">
-            <h2>Mis Tiendas</h2>
+            <h2>TIENDAS</h2>
             <a href="../tienda/crear.php" class="btn-create">+ Nueva Tienda</a>
         </div>
 
@@ -106,10 +108,10 @@ if ($total_tiendas > 0) {
                             </div>
 
                             <div class="tienda-actions">
-                                <a href="../productos/index.php?tienda_id=<?php echo $tienda['tienda_id']; ?>" class="btn-action btn-products">📦 Productos</a>
-                                <a href="../clientes/index.php?tienda_id=<?php echo $tienda['tienda_id']; ?>" class="btn-action btn-clients">👥 Clientes</a>
-                                <a href="../deudas/index.php?tienda_id=<?php echo $tienda['tienda_id']; ?>" class="btn-action btn-debts">💰 Deudas</a>
-                                <a href="../tienda/editar.php?tienda_id=<?php echo $tienda['tienda_id']; ?>" class="btn-action btn-edit">✏️ Editar</a>
+                                <a href="../productos/index.php?tienda_id=<?php echo $tienda['tienda_id']; ?>" class="btn-action btn-products">Productos</a>
+                                <a href="../clientes/index.php?tienda_id=<?php echo $tienda['tienda_id']; ?>" class="btn-action btn-clients">Clientes</a>
+                                <a href="../deudas/index.php?tienda_id=<?php echo $tienda['tienda_id']; ?>" class="btn-action btn-debts">Deudas</a>
+                                <a href="../tienda/editar.php?tienda_id=<?php echo $tienda['tienda_id']; ?>" class="btn-action btn-edit">Editar</a>
                             </div>
                         </div>
                     </div>
@@ -117,7 +119,9 @@ if ($total_tiendas > 0) {
             </div>
         <?php else: ?>
             <div class="empty-state">
-                <div class="empty-state-icon">🏢</div>
+           
+            <img src="../../img/iconos/tienda (3).png" alt="STORLINE Logo" class="logo-img">
+    
                 <h3>Aún no tienes tiendas</h3>
                 <p>Crea tu primera tienda para comenzar a gestionar productos y clientes.</p>
                 <br>
@@ -126,8 +130,10 @@ if ($total_tiendas > 0) {
         <?php endif; ?>
     </div>
 
-    <footer>
-        <p>&copy; 2026 STORLINE. Todos los derechos reservados.</p>
+      <footer>
+        <p>&copy; 2026 Bases de datos</p>
+        <p>Pedro Correa<br>José Cancelado</p>
     </footer>
+</body>
 </body>
 </html>

@@ -11,7 +11,7 @@
         }
 
         header {
-            background: linear-gradient(135deg, #01597e 0%, #ce5205 100%),url('../img/fondos/comercio.jpg');
+            background: linear-gradient(135deg, #033449 0%, #ce5205 100%);
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
@@ -23,12 +23,7 @@
             
         }
 
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: #667eea;
-            text-decoration: none;
-        }
+    
 
         .nav-auth {
             display: flex;
@@ -80,7 +75,7 @@
             min-height: calc(100vh - 80px);
             color: white;
             text-align: center;
-            background: linear-gradient(135deg, #01587ed5 0%, #ce5205bc 100%),url('../img/fondos/comercio.jpg');
+            background: linear-gradient(135deg, #ce5205bc 0%, #01587ed5 100%),url('../img/fondos/fondoprincipal.jpg');
             padding: 2rem;
         }
 
@@ -181,32 +176,43 @@
         }
 
         .feature-card {
-            background: white;
+            background: rgb(255, 255, 255);
             padding: 2rem;
             border-radius: 10px;
             text-align: center;
             transition: all 0.3s ease;
         }
-
+        .feature-card h3 {
+            color: #cf6113;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
         .feature-card:hover {
+            color: #ffffff;
+            background: linear-gradient(135deg, #ce5205bc 0%, #01587ed5 100%);
             transform: translateY(-10px);
-box-shadow: 
-  -15px 10px 25px -5px rgba(12, 161, 215, 0.83),  /* Sombra Azul (Desplazada a la izquierda) */
-   15px 10px 25px -5px rgba(206, 82, 5, 0.83);        }
+            box-shadow: 
+                 -15px 10px 25px -5px rgba(12, 161, 215, 0.83),  /* Sombra Azul (Desplazada a la izquierda) */
+                15px 10px 25px -5px rgba(206, 82, 5, 0.83);        }
+.feature-card:hover h3 {
+    color: white;
+}
 
-        .feature-icon {
+.feature-card:hover p {
+    color: white;
+}
+        .icono-card {
+            width: 120px;
             font-size: 3rem;
             margin-bottom: 1rem;
         }
 
-        .feature-card h3 {
-            color: #667eea;
-            margin-bottom: 0.5rem;
-            font-size: 1.5rem;
-        }
+        
 
+
+        
         .feature-card p {
-            color: #666;
+            color: #010101;
             line-height: 1.6;
         }
 

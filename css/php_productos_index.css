@@ -10,7 +10,7 @@
         }
 
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0aa70a 0%, #01587ed5 100%);
             color: white;
             padding: 1.5rem 2rem;
             display: flex;
@@ -46,6 +46,10 @@
             color: #333;
             font-size: 1.8rem;
         }
+        .logo-img {
+            height:60px;
+            margin-right: 1rem;
+        }
 
         .btn-create {
             background: #27ae60;
@@ -68,7 +72,7 @@
         .back-link {
             display: inline-block;
             margin-bottom: 1rem;
-            color: #667eea;
+            color: #19a41d;
             text-decoration: none;
             font-weight: 600;
         }
@@ -83,7 +87,7 @@
         }
 
         th {
-            background: #667eea;
+            background: #3fb912;
             color: white;
             padding: 1rem;
             text-align: left;

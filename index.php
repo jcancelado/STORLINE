@@ -12,7 +12,7 @@
    <header>
     <div class="logo">
         <a href="index.php">
-            <img src="log.png" alt="STORLINE Logo" class="logo-img">
+            <img src="img/logo.png" alt="STORLINE Logo" class="logo-img">
         </a>
     </div>
     <nav class="nav-auth">
@@ -36,46 +36,59 @@
     <!-- Features Section -->
     <section class="features" id="features">
         <div class="feature-card">
-            <div class="feature-icon">🏢</div>
-            <h3>Gestiona Múltiples Tiendas</h3>
+            <div class="feature-icon">
+                     <img src="img/iconos/tienda.png" alt="STORLINE Logo" class="icono-card">
+
+            </div>
+            <h3>GESTIONA TUS TIENDAS</h3>
             <p>Crea y administra todas tus tiendas desde un único panel de control centralizado.</p>
         </div>
 
         <div class="feature-card">
-            <div class="feature-icon">📦</div>
-            <h3>CRUD de Productos</h3>
+            <div class="feature-icon">
+                     <img src="img/iconos/nuevo-producto.png" alt="STORLINE Logo" class="icono-card">
+            </div>
+            <h3>GESTIÓN DE PRODUCTOS</h3>
             <p>Administra tu inventario con facilidad. Crea, edita, elimina y controla el stock de tus productos.</p>
         </div>
 
         <div class="feature-card">
-            <div class="feature-icon">👥</div>
-            <h3>Gestión de Clientes</h3>
+            <div class="feature-icon">
+                     <img src="img/iconos/personas.png" alt="STORLINE Logo" class="icono-card">
+            </div>
+            <h3>GESTIÓN DE CLIENTES</h3>
             <p>Mantén un registro completo de tus clientes con toda su información de contacto.</p>
         </div>
 
         <div class="feature-card">
-            <div class="feature-icon">💰</div>
-            <h3>Control de Deudas</h3>
+            <div class="feature-icon">
+                     <img src="img/iconos/atrasado.png" alt="STORLINE Logo" class="icono-card">
+            </div>
+            <h3>CONTROL DE DEUDAS</h3>
             <p>Registra y controla las deudas de tus clientes. Seguimiento de pagos y vencimientos.</p>
         </div>
 
         <div class="feature-card">
-            <div class="feature-icon">📊</div>
-            <h3>Reportes y Estadísticas</h3>
+            <div class="feature-icon">
+                     <img src="img/iconos/finanzas.png" alt="STORLINE Logo" class="icono-card">
+            </div>
+            <h3>FINANZAS</h3>
             <p>Visualiza datos importantes sobre tus tiendas, productos y clientes en tiempo real.</p>
         </div>
 
         <div class="feature-card">
-            <div class="feature-icon">🔒</div>
-            <h3>Seguridad Garantizada</h3>
+            <div class="feature-icon">
+                     <img src="img/iconos/proteger.png" alt="STORLINE Logo" class="icono-card">
+            </div>
+            <h3>SEGURIDAD GARANTIZADA</h3>
             <p>Tu información está protegida con contraseñas encriptadas y sesiones seguras.</p>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 STORLINE. Todos los derechos reservados.</p>
-        <p>Desarrollado para gestionar tu negocio de forma eficiente.</p>
+        <p>&copy; 2026 Bases de datos</p>
+        <p>Pedro Correa<br>José Cancelado</p>
     </footer>
 </body>
 </html>

@@ -46,13 +46,13 @@ $deudas = mysqli_fetch_all($result_deudas, MYSQLI_ASSOC);
     <!-- Header -->
     <header>
         <div class="header-left">
-            <h1>💰 Deudas</h1>
+            <h1>Deudas</h1>
             <p>Tienda: <?php echo htmlspecialchars($tienda['nombre']); ?></p>
         </div>
     </header>
 
     <div class="container">
-        <a href="../dashboard/index.php" class="back-link">← Volver al Dashboard</a>
+        <a href="../dashboard/index.php" class="back-link">← REGRESAR</a>
 
         <div class="section-header">
             <h2>Gestión de Deudas</h2>
@@ -93,7 +93,6 @@ $deudas = mysqli_fetch_all($result_deudas, MYSQLI_ASSOC);
             </table>
         <?php else: ?>
             <div class="empty-state">
-                <div class="empty-state-icon">💰</div>
                 <h3>No hay deudas registradas</h3>
                 <p>Crea una nueva deuda para comenzar a gestionar.</p>
                 <br>

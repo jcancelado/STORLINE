@@ -38,10 +38,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="login-container">
-        <a href="../../index.php" class="back-link">← Volver al inicio</a>
+        <a href="../../index.php" class="back-link">← REGRESAR</a>
         
         <div class="login-header">
-            <h1>🏪</h1>
+             <a href="../../index.php">
+            <img src="../../img/logo.png" alt="STORLINE Logo" class="logo-img">
+        </a>
             <h1>STORLINE</h1>
             <p>Iniciar sesión en tu cuenta</p>
         </div>

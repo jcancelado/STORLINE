@@ -29,13 +29,14 @@ if (mysqli_num_rows($result_tienda) == 0) {
 $tienda = mysqli_fetch_assoc($result_tienda);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nombre = mysqli_real_escape_string($cn, $_POST['nombre']);
-    $email = mysqli_real_escape_string($cn, $_POST['email'] ?? '');
-    $telefono = mysqli_real_escape_string($cn, $_POST['telefono'] ?? '');
-    $ciudad = mysqli_real_escape_string($cn, $_POST['ciudad'] ?? '');
-    $direccion = mysqli_real_escape_string($cn, $_POST['direccion'] ?? '');
+    $nombre_input = trim($_POST['nombre'] ?? '');
+    $nombre = mysqli_real_escape_string($cn, $nombre_input);
+    $email = mysqli_real_escape_string($cn, trim($_POST['email'] ?? ''));
+    $telefono = mysqli_real_escape_string($cn, trim($_POST['telefono'] ?? ''));
+    $ciudad = mysqli_real_escape_string($cn, trim($_POST['ciudad'] ?? ''));
+    $direccion = mysqli_real_escape_string($cn, trim($_POST['direccion'] ?? ''));
 
-    if (empty($nombre)) {
+    if (empty($nombre_input)) {
         $error = "El nombre del cliente es requerido";
     } else {
         // Asegurar que la columna tienda_id existe antes de insertar
@@ -44,14 +45,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             mysqli_query($cn, "ALTER TABLE clientes ADD COLUMN tienda_id int(11) DEFAULT NULL");
         }
 
-        $query = "INSERT INTO clientes (nombre, email, telefono, ciudad, direccion, tienda_id) 
-                  VALUES ('$nombre', '$email', '$telefono', '$ciudad', '$direccion', $tienda_id)";
-        
-        if (mysqli_query($cn, $query)) {
-            $success = "Cliente creado exitosamente";
-            $_POST = array();
+        $nombre_normalizado = strtolower($nombre_input);
+        $duplicate_check = mysqli_query($cn, "SELECT cliente_id FROM clientes WHERE tienda_id = $tienda_id AND LOWER(TRIM(nombre)) = '$nombre_normalizado' LIMIT 1");
+
+        if (mysqli_num_rows($duplicate_check) > 0) {
+            $error = "Ya existe un cliente con ese nombre en esta tienda";
         } else {
-            $error = "Error al crear el cliente: " . mysqli_error($cn);
+            $query = "INSERT INTO clientes (nombre, email, telefono, ciudad, direccion, tienda_id) 
+                      VALUES ('$nombre', '$email', '$telefono', '$ciudad', '$direccion', $tienda_id)";
+            
+            if (mysqli_query($cn, $query)) {
+                $success = "Cliente creado exitosamente";
+                $_POST = array();
+            } else {
+                $error = "Error al crear el cliente: " . mysqli_error($cn);
+            }
         }
     }
 }
@@ -66,10 +74,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="container">
-        <a href="index.php?tienda_id=<?php echo $tienda_id; ?>" class="back-link">← Volver a Clientes</a>
 
         <div class="form-container">
-            <h1>👥 Crear Nuevo Cliente</h1>
+         <a href="index.php?tienda_id=<?php echo $tienda_id; ?>" class="back-link">← REGRESAR</a>
+
+            <h1> Crear Nuevo Cliente</h1>
             <p style="color: #999; margin-bottom: 2rem;">Tienda: <?php echo htmlspecialchars($tienda['nombre']); ?></p>
 
             <?php if ($error): ?>

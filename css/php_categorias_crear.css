@@ -1,4 +1,6 @@
-body { font-family: 'Open Sans', sans-serif; background:#f5f7fa; padding:2rem; }
+body { font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #419e0bbc 0%, #01587ed5 100%),url('../img/fondos/fondoprincipal.jpg');
+         padding:2rem; }
         .container { max-width:480px; margin:0 auto; }
         .card { background:white; padding:1.5rem; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.05); }
         .error{background:#fee;color:#c33;padding:.6rem;border-left:4px solid #c33;margin-bottom:1rem}
@@ -7,4 +9,4 @@ body { font-family: 'Open Sans', sans-serif; background:#f5f7fa; padding:2rem; }
         label{display:block;margin-bottom:.4rem;font-weight:600}
         input{width:100%;padding:.6rem;border:1px solid #ddd;border-radius:6px}
         button{background:#27ae60;color:white;padding:.6rem 1rem;border:0;border-radius:6px;font-weight:700;cursor:pointer}
-        .back{display:inline-block;margin-bottom:1rem;color:#667eea;text-decoration:none}
+        .back{display:inline-block;margin-bottom:1rem;color:#0ba112;text-decoration:none}

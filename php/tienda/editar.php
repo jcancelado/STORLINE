@@ -63,9 +63,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="container">
-        <a href="../../php/dashboard/index.php" class="back-link">← Volver al Dashboard</a>
 
         <div class="form-container">
+                    <a href="../../php/dashboard/index.php" class="back-link">← REGRESAR</a>
+
             <h1>✏️ Editar Tienda</h1>
 
             <?php if ($error): ?>

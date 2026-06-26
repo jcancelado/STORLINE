@@ -72,10 +72,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="container">
-        <a href="index.php?tienda_id=<?php echo $tienda_id; ?>" class="back-link">← Volver a Productos</a>
 
         <div class="form-container">
-            <h1>✏️ Editar Producto</h1>
+                 <a href="index.php?tienda_id=<?php echo $tienda_id; ?>" class="back-link">← REGRESAR</a>
+
+            <h1>EDITAR PRODUCTO</h1>
 
             <?php if ($error): ?>
                 <div class="error"><?php echo $error; ?></div>

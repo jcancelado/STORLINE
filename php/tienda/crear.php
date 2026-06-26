@@ -43,10 +43,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="container">
-        <a href="../../php/dashboard/index.php" class="back-link">← Volver al Dashboard</a>
 
         <div class="form-container">
-            <h1>🏪 Crear Nueva Tienda</h1>
+            <a href="../../php/dashboard/index.php" class="back-link">← REGRESAR</a>
+
+            <h1> CREAR TIENDA</h1>
 
             <?php if ($error): ?>
                 <div class="error"><?php echo $error; ?></div>

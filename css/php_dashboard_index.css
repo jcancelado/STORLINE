@@ -6,18 +6,25 @@
 
         body {
             font-family: 'Open Sans', sans-serif;
-            background: #f5f7fa;
-            color: #333;
+            background: #000000;
+            color: #ffffff;
         }
 
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.5rem 2rem;
+     header {
+            background: linear-gradient(135deg, #033449 0%, #ce5205 100%);
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            
+        }
+        .logo-img {
+            height: 60px;
+            margin-right: 1rem;
         }
 
         .header-left h1 {
@@ -50,7 +57,7 @@
 
         .btn-logout:hover {
             background: white;
-            color: #667eea;
+            color: #0a9ca7;
         }
 
         .container {
@@ -72,42 +79,52 @@
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             text-align: center;
-            border-left: 4px solid #667eea;
-        }
+            border-left: 4px solid #36a2c9;
+             background: linear-gradient(to top, #300c85 0%, #0a9ca7 100%);}
+
+        
 
         .stat-card.clientes {
+            color: #000000;
             border-left-color: #f39c12;
-        }
+  background: #f39c12;}
+      
 
         .stat-card.productos {
-            border-left-color: #27ae60;
-        }
+                        color: #ffffff;
+
+            border-left-color: #15ba26;
+            background: #15ba26;}
+
+        
 
         .stat-card.deudas {
-            border-left-color: #e74c3c;
-        }
+             color: #000000;
+            border-left-color: #de1c06;
+            background: #dd1f05;}
+
+    
 
         .stat-number {
             font-size: 2.5rem;
             font-weight: bold;
-            color: #667eea;
+            color: #fbfbfb;
             margin: 0.5rem 0;
         }
 
         .stat-card.clientes .stat-number {
-            color: #f39c12;
+            color: #000000;
         }
 
         .stat-card.productos .stat-number {
-            color: #27ae60;
+     color: #ffffff;
         }
 
         .stat-card.deudas .stat-number {
-            color: #e74c3c;
+            color: #000000;
         }
 
         .stat-label {
-            color: #999;
             font-size: 0.95rem;
             font-weight: 600;
         }
@@ -121,12 +138,12 @@
         }
 
         .section-header h2 {
-            color: #333;
+            color: #ffffff;
             font-size: 1.8rem;
         }
 
         .btn-create {
-            background: #667eea;
+            background: #ce5205;
             color: white;
             padding: 0.75rem 1.5rem;
             border: none;
@@ -139,7 +156,7 @@
         }
 
         .btn-create:hover {
-            background: #764ba2;
+            background: linear-gradient(135deg, #033449 0%, #ce5205 100%);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
@@ -165,7 +182,7 @@
         }
 
         .tienda-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #0a9ca7;
             color: white;
             padding: 1.5rem;
         }
@@ -214,7 +231,7 @@
         }
 
         .btn-products {
-            background: #27ae60;
+            background: #15ba26;
             color: white;
         }
 
@@ -232,7 +249,7 @@
         }
 
         .btn-debts {
-            background: #e74c3c;
+            background: #dd1f05;
             color: white;
         }
 
@@ -252,9 +269,9 @@
         .empty-state {
             text-align: center;
             padding: 3rem 2rem;
-            background: white;
+            background: #0a9ca7;
             border-radius: 10px;
-            color: #999;
+            color: #ffffff;
         }
 
         .empty-state-icon {

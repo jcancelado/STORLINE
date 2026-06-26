@@ -48,13 +48,13 @@ $categorias = mysqli_fetch_all($result_categorias, MYSQLI_ASSOC);
     <!-- Header -->
     <header>
         <div class="header-left">
-            <h1>📦 Productos</h1>
+            <h3>PRODUCTOS</h3>
             <p>Tienda: <?php echo htmlspecialchars($tienda['nombre']); ?></p>
         </div>
     </header>
 
     <div class="container">
-        <a href="../dashboard/index.php" class="back-link">← Volver al Dashboard</a>
+        <a href="../dashboard/index.php" class="back-link">← REGRESAR</a>
 
         <div class="section-header">
             <h2>Gestión de Productos</h2>
@@ -91,7 +91,7 @@ $categorias = mysqli_fetch_all($result_categorias, MYSQLI_ASSOC);
             </table>
         <?php else: ?>
             <div class="empty-state">
-                <div class="empty-state-icon">📦</div>
+               
                 <h3>No hay productos</h3>
                 <p>Crea tu primer producto para comenzar.</p>
                 <br>

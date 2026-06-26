@@ -32,10 +32,14 @@ if (mysqli_num_rows($column_check) == 0) {
     mysqli_query($cn, "ALTER TABLE clientes ADD COLUMN tienda_id int(11) DEFAULT NULL");
 }
 
-// Obtener clientes relacionados con la tienda (asignados o con deudas en ella)
+// Obtener solo clientes asignados a la tienda actual
 $query_clientes = "SELECT DISTINCT c.* FROM clientes c 
-                   LEFT JOIN deudas d ON c.cliente_id = d.cliente_id AND d.tienda_id = $tienda_id 
-                   WHERE c.tienda_id = $tienda_id OR d.tienda_id = $tienda_id 
+                   WHERE c.tienda_id = $tienda_id 
+                      OR (c.tienda_id IS NULL AND EXISTS (
+                          SELECT 1 FROM deudas d 
+                          WHERE d.cliente_id = c.cliente_id
+                            AND d.tienda_id = $tienda_id
+                      ))
                    ORDER BY c.nombre";
 $result_clientes = mysqli_query($cn, $query_clientes);
 $clientes = mysqli_fetch_all($result_clientes, MYSQLI_ASSOC);
@@ -52,13 +56,13 @@ $clientes = mysqli_fetch_all($result_clientes, MYSQLI_ASSOC);
     <!-- Header -->
     <header>
         <div class="header-left">
-            <h1>👥 Clientes</h1>
+            <h1>Clientes</h1>
             <p>Tienda: <?php echo htmlspecialchars($tienda['nombre']); ?></p>
         </div>
     </header>
 
     <div class="container">
-        <a href="../dashboard/index.php" class="back-link">← Volver al Dashboard</a>
+        <a href="../dashboard/index.php" class="back-link">← REGRESAR</a>
 
         <div class="section-header">
             <h2>Gestión de Clientes</h2>
@@ -86,7 +90,7 @@ $clientes = mysqli_fetch_all($result_clientes, MYSQLI_ASSOC);
                             <td><?php echo htmlspecialchars($cliente['ciudad'] ?? '---'); ?></td>
                             <td><?php echo $cliente['activo'] ? '<span style="color:green;">✓ Activo</span>' : '<span style="color:red;">✗ Inactivo</span>'; ?></td>
                             <td>
-                                <a href="editar.php?cliente_id=<?php echo $cliente['cliente_id']; ?>" class="btn-action btn-edit">Editar</a>
+                                <a href="editar.php?cliente_id=<?php echo $cliente['cliente_id']; ?>&tienda_id=<?php echo $tienda_id; ?>" class="btn-action btn-edit">Editar</a>
                                 <a href="../deudas/index.php?tienda_id=<?php echo $tienda_id; ?>&cliente_id=<?php echo $cliente['cliente_id']; ?>" class="btn-action btn-debts">Deudas</a>
                             </td>
                         </tr>
@@ -95,7 +99,6 @@ $clientes = mysqli_fetch_all($result_clientes, MYSQLI_ASSOC);
             </table>
         <?php else: ?>
             <div class="empty-state">
-                <div class="empty-state-icon">👥</div>
                 <h3>No hay clientes con deudas</h3>
                 <p>Crea tu primer cliente para comenzar a gestionar deudas.</p>
                 <br>

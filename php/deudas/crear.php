@@ -28,8 +28,18 @@ if (mysqli_num_rows($result_tienda) == 0) {
 
 $tienda = mysqli_fetch_assoc($result_tienda);
 
-// Obtener clientes
-$query_clientes = "SELECT * FROM clientes WHERE activo = 1 ORDER BY nombre";
+// Obtener clientes válidos para la tienda actual
+$query_clientes = "SELECT c.* FROM clientes c 
+                   WHERE c.activo = 1
+                     AND (
+                         c.tienda_id = $tienda_id
+                         OR (c.tienda_id IS NULL AND EXISTS (
+                             SELECT 1 FROM deudas d
+                             WHERE d.cliente_id = c.cliente_id
+                               AND d.tienda_id = $tienda_id
+                         ))
+                     )
+                   ORDER BY c.nombre";
 $result_clientes = mysqli_query($cn, $query_clientes);
 $clientes = mysqli_fetch_all($result_clientes, MYSQLI_ASSOC);
 
@@ -42,15 +52,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!$cliente_id || $monto_total <= 0) {
         $error = "Cliente y monto son requeridos";
     } else {
-        $vencimiento_sql = $fecha_vencimiento ? "'$fecha_vencimiento'" : "NULL";
-        $query = "INSERT INTO deudas (tienda_id, cliente_id, monto_total, descripcion, fecha_vencimiento) 
-                  VALUES ($tienda_id, $cliente_id, $monto_total, '$descripcion', $vencimiento_sql)";
-        
-        if (mysqli_query($cn, $query)) {
-            $success = "Deuda creada exitosamente";
-            $_POST = array();
+        $cliente_valido = mysqli_query($cn, "SELECT c.cliente_id FROM clientes c 
+                                            WHERE c.cliente_id = $cliente_id
+                                              AND c.activo = 1
+                                              AND (
+                                                  c.tienda_id = $tienda_id
+                                                  OR (c.tienda_id IS NULL AND EXISTS (
+                                                      SELECT 1 FROM deudas d
+                                                      WHERE d.cliente_id = c.cliente_id
+                                                        AND d.tienda_id = $tienda_id
+                                                  ))
+                                              ) LIMIT 1");
+
+        if (mysqli_num_rows($cliente_valido) == 0) {
+            $error = "El cliente seleccionado no pertenece a esta tienda";
         } else {
-            $error = "Error al crear la deuda: " . mysqli_error($cn);
+            $vencimiento_sql = $fecha_vencimiento ? "'$fecha_vencimiento'" : "NULL";
+            $query = "INSERT INTO deudas (tienda_id, cliente_id, monto_total, descripcion, fecha_vencimiento) 
+                      VALUES ($tienda_id, $cliente_id, $monto_total, '$descripcion', $vencimiento_sql)";
+            
+            if (mysqli_query($cn, $query)) {
+                $success = "Deuda creada exitosamente";
+                $_POST = array();
+            } else {
+                $error = "Error al crear la deuda: " . mysqli_error($cn);
+            }
         }
     }
 }
@@ -65,10 +91,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="container">
-        <a href="index.php?tienda_id=<?php echo $tienda_id; ?>" class="back-link">← Volver a Deudas</a>
 
         <div class="form-container">
-            <h1>💰 Registrar Nueva Deuda</h1>
+            <a href="index.php?tienda_id=<?php echo $tienda_id; ?>" class="back-link">← REGRESAR</a>
+
+            <h1>REGISTRAR DEUDA</h1>
             <p style="color: #999; margin-bottom: 2rem;">Tienda: <?php echo htmlspecialchars($tienda['nombre']); ?></p>
 
             <?php if ($error): ?>

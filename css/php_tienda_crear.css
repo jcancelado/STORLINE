@@ -6,7 +6,7 @@
 
         body {
             font-family: 'Open Sans', sans-serif;
-            background: #f5f7fa;
+            background: linear-gradient(135deg, #ce5205bc 0%, #01587ed5 100%),url('../img/fondos/fondoprincipal.jpg');
             padding: 2rem;
         }
 
@@ -18,7 +18,7 @@
         .back-link {
             display: inline-block;
             margin-bottom: 2rem;
-            color: #667eea;
+            color: #0a9ca7;
             text-decoration: none;
             font-weight: 600;
         }
@@ -92,7 +92,7 @@
         .form-group button {
             width: 100%;
             padding: 0.75rem;
-            background: #667eea;
+            background: #ce5205;
             color: white;
             border: none;
             border-radius: 5px;
@@ -103,7 +103,7 @@
         }
 
         .form-group button:hover {
-            background: #764ba2;
+            background: #0a9ca7;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }

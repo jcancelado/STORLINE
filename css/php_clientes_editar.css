@@ -6,7 +6,7 @@
 
         body {
             font-family: 'Open Sans', sans-serif;
-            background: #f5f7fa;
+            background: linear-gradient(135deg, #f39c12 0%, #01587ed5 100%),url('../img/fondos/fondoprincipal.jpg');
             padding: 2rem;
         }
 
@@ -18,7 +18,7 @@
         .back-link {
             display: inline-block;
             margin-bottom: 2rem;
-            color: #667eea;
+            color: #f39c12;
             text-decoration: none;
             font-weight: 600;
         }
@@ -107,7 +107,7 @@
         .form-group button {
             flex: 1;
             padding: 0.75rem;
-            background: #667eea;
+            background: #f39c12;
             color: white;
             border: none;
             border-radius: 5px;
@@ -118,13 +118,22 @@
         }
 
         .form-group button:hover {
-            background: #764ba2;
+            background: #f39c12;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
         .btn-delete {
-            background: #e74c3c !important;
+   flex: 1;
+            padding: 0.75rem;
+            background: #f33012;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;            
         }
 
         .btn-delete:hover {

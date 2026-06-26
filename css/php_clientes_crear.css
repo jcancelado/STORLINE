@@ -6,7 +6,7 @@
 
         body {
             font-family: 'Open Sans', sans-serif;
-            background: #f5f7fa;
+            background: linear-gradient(135deg, #f39c12 0%, #01587ed5 100%),url('../img/fondos/fondoprincipal.jpg');
             padding: 2rem;
         }
 
@@ -18,7 +18,7 @@
         .back-link {
             display: inline-block;
             margin-bottom: 2rem;
-            color: #667eea;
+            color: #f39c12;
             text-decoration: none;
             font-weight: 600;
         }

@@ -43,8 +43,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="container">
-        <a class="back" href="javascript:history.back()">← Volver</a>
         <div class="card">
+            <a class="back" href="javascript:history.back()">← REGRESAR</a>
+
             <h2>Crear Categoría</h2>
             <?php if ($error): ?>
                 <div class="error"><?php echo $error; ?></div>

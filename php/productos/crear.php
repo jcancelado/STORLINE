@@ -66,10 +66,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="container">
-        <a href="index.php?tienda_id=<?php echo $tienda_id; ?>" class="back-link">← Volver a Productos</a>
 
         <div class="form-container">
-            <h1>📦 Crear Nuevo Producto</h1>
+                    <a href="index.php?tienda_id=<?php echo $tienda_id; ?>" class="back-link">← REGRESAR</a>
+
+            <h1>CREAR PRODUCTO</h1>
             <p style="color: #999; margin-bottom: 2rem;">Tienda: <?php echo htmlspecialchars($tienda['nombre']); ?></p>
 
             <?php if ($error): ?>
@@ -103,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </option>
                             <?php endforeach; ?>
                         </select>
-                        <a href="../categorias/crear.php?tienda_id=<?php echo $tienda_id; ?>&origen=producto" style="font-size:0.9rem;color:#667eea;text-decoration:none;font-weight:600;">+ Crear categoría</a>
+                        <a href="../categorias/crear.php?tienda_id=<?php echo $tienda_id; ?>&origen=producto" style="font-size:0.9rem;color:#25bb22;text-decoration:none;font-weight:600;">+ Crear categoría</a>
                         </div>
                     </div>
 

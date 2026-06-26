@@ -10,7 +10,7 @@
         }
 
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #f39c12 0%, #01587ed5 100%);
             color: white;
             padding: 1.5rem 2rem;
             display: flex;
@@ -68,7 +68,7 @@
         .back-link {
             display: inline-block;
             margin-bottom: 1rem;
-            color: #667eea;
+            color: #f39c12;
             text-decoration: none;
             font-weight: 600;
         }
@@ -83,7 +83,7 @@
         }
 
         th {
-            background: #667eea;
+            background: #f39c12;
             color: white;
             padding: 1rem;
             text-align: left;

@@ -8,6 +8,7 @@ if (!isset($_SESSION['usuario_id'])) {
 }
 
 $cliente_id = $_GET['cliente_id'] ?? null;
+$tienda_id = $_GET['tienda_id'] ?? null;
 $error = '';
 $success = '';
 
@@ -28,26 +29,35 @@ if (mysqli_num_rows($result) == 0) {
 $cliente = mysqli_fetch_assoc($result);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nombre = mysqli_real_escape_string($cn, $_POST['nombre']);
-    $email = mysqli_real_escape_string($cn, $_POST['email'] ?? '');
-    $telefono = mysqli_real_escape_string($cn, $_POST['telefono'] ?? '');
-    $ciudad = mysqli_real_escape_string($cn, $_POST['ciudad'] ?? '');
-    $direccion = mysqli_real_escape_string($cn, $_POST['direccion'] ?? '');
+    $nombre_input = trim($_POST['nombre'] ?? '');
+    $nombre = mysqli_real_escape_string($cn, $nombre_input);
+    $email = mysqli_real_escape_string($cn, trim($_POST['email'] ?? ''));
+    $telefono = mysqli_real_escape_string($cn, trim($_POST['telefono'] ?? ''));
+    $ciudad = mysqli_real_escape_string($cn, trim($_POST['ciudad'] ?? ''));
+    $direccion = mysqli_real_escape_string($cn, trim($_POST['direccion'] ?? ''));
     $activo = isset($_POST['activo']) ? 1 : 0;
 
-    if (empty($nombre)) {
+    if (empty($nombre_input)) {
         $error = "El nombre del cliente es requerido";
     } else {
-        $update_query = "UPDATE clientes SET nombre='$nombre', email='$email', 
-                        telefono='$telefono', ciudad='$ciudad', direccion='$direccion', activo=$activo 
-                        WHERE cliente_id=$cliente_id";
-        
-        if (mysqli_query($cn, $update_query)) {
-            $success = "Cliente actualizado exitosamente";
-            $cliente = array_merge($cliente, $_POST);
-            $cliente['activo'] = $activo;
+        $tienda_cliente = $cliente['tienda_id'] ?? $tienda_id;
+        $nombre_normalizado = strtolower($nombre_input);
+        $duplicate_check = mysqli_query($cn, "SELECT cliente_id FROM clientes WHERE cliente_id != $cliente_id AND tienda_id = $tienda_cliente AND LOWER(TRIM(nombre)) = '$nombre_normalizado' LIMIT 1");
+
+        if (mysqli_num_rows($duplicate_check) > 0) {
+            $error = "Ya existe otro cliente con ese nombre en esta tienda";
         } else {
-            $error = "Error al actualizar: " . mysqli_error($cn);
+            $update_query = "UPDATE clientes SET nombre='$nombre', email='$email', 
+                            telefono='$telefono', ciudad='$ciudad', direccion='$direccion', activo=$activo 
+                            WHERE cliente_id=$cliente_id";
+            
+            if (mysqli_query($cn, $update_query)) {
+                $success = "Cliente actualizado exitosamente";
+                $cliente = array_merge($cliente, $_POST);
+                $cliente['activo'] = $activo;
+            } else {
+                $error = "Error al actualizar: " . mysqli_error($cn);
+            }
         }
     }
 }
@@ -62,10 +72,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="container">
-        <a href="index.php" class="back-link">← Volver a Clientes</a>
 
         <div class="form-container">
-            <h1>✏️ Editar Cliente</h1>
+                    <a href="index.php?tienda_id=<?php echo htmlspecialchars($tienda_id ?? $cliente['tienda_id'] ?? ''); ?>" class="back-link">← REGRESAR</a>
+
+            <h1>Editar Cliente</h1>
 
             <?php if ($error): ?>
                 <div class="error"><?php echo $error; ?></div>
