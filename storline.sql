@@ -76,6 +76,7 @@ CREATE TABLE `clientes` (
   `ciudad` varchar(50) COMMENT 'Ciudad',
   `fecha_registro` timestamp DEFAULT CURRENT_TIMESTAMP COMMENT 'Fecha de registro',
   `activo` tinyint(1) DEFAULT 1 COMMENT 'Cliente activo',
+  `tienda_id` int(11) DEFAULT NULL COMMENT 'Tienda asociada al cliente',
   PRIMARY KEY (`cliente_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

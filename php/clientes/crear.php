@@ -38,8 +38,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($nombre)) {
         $error = "El nombre del cliente es requerido";
     } else {
-        $query = "INSERT INTO clientes (nombre, email, telefono, ciudad, direccion) 
-                  VALUES ('$nombre', '$email', '$telefono', '$ciudad', '$direccion')";
+        // Asegurar que la columna tienda_id existe antes de insertar
+        $column_check = mysqli_query($cn, "SHOW COLUMNS FROM clientes LIKE 'tienda_id'");
+        if (mysqli_num_rows($column_check) == 0) {
+            mysqli_query($cn, "ALTER TABLE clientes ADD COLUMN tienda_id int(11) DEFAULT NULL");
+        }
+
+        $query = "INSERT INTO clientes (nombre, email, telefono, ciudad, direccion, tienda_id) 
+                  VALUES ('$nombre', '$email', '$telefono', '$ciudad', '$direccion', $tienda_id)";
         
         if (mysqli_query($cn, $query)) {
             $success = "Cliente creado exitosamente";
@@ -56,122 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Cliente - STORLINE</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background: #f5f7fa;
-            padding: 2rem;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: 2rem;
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .form-container {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .form-container h1 {
-            color: #333;
-            margin-bottom: 2rem;
-            font-size: 1.8rem;
-        }
-
-        .error {
-            background: #fee;
-            color: #c33;
-            padding: 0.75rem;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-            border-left: 4px solid #c33;
-        }
-
-        .success {
-            background: #efe;
-            color: #3c3;
-            padding: 0.75rem;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-            border-left: 4px solid #3c3;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #333;
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Open Sans', sans-serif;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .form-group button {
-            width: 100%;
-            padding: 0.75rem;
-            background: #f39c12;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .form-group button:hover {
-            background: #e67e22;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.4);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-    </style>
+    <link rel="stylesheet" href="../../css/php_clientes_crear.css">
 </head>
 <body>
     <div class="container">

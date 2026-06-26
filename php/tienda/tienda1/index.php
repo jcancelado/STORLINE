@@ -28,9 +28,7 @@ include("../../conexion.php");
 
 
 
-<style>
-    
-</style>
+<link rel="stylesheet" href="../../../css/php_tienda_tienda1_index.css">
 
 
 <!-- NAVBAR -->
