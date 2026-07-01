@@ -1,5 +1,5 @@
 
-alert("Archivo ventas_crear.js cargado");
+
 // Datos de la venta
 
 
@@ -103,7 +103,7 @@ resultados.style.display = "block";
 
 function agregarProducto(producto){
 
-alert("Entró a agregarProducto");
+
 
     if(producto.stock <= 0){
 
