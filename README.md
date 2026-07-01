@@ -191,4 +191,230 @@ Si tienes problemas:
 
 ---
 
-**STORLINE v1.0** - 2026
+1.2 (seccion de ventas)
+
+STORLINE
+Módulo de Ventas
+
+Descripción
+
+Este módulo permite registrar ventas dentro de una tienda, controlar inventario, generar facturas y administrar el historial de ventas.
+
+Todas las operaciones se realizan únicamente sobre las tiendas pertenecientes al usuario autenticado.
+
+--------------------------------------------------
+
+FUNCIONALIDADES IMPLEMENTADAS
+
+Registro de ventas.
+
+Buscador de productos en tiempo real.
+
+Selección rápida de productos.
+
+Control de cantidades.
+
+Cálculo automático del subtotal.
+
+Cálculo automático del total.
+
+Pago exacto.
+
+Registro del monto recibido.
+
+Estado del pago.
+
+Generación automática de factura.
+
+Historial de ventas.
+
+Visualización de facturas.
+
+Anulación de ventas.
+
+Devolución automática del inventario al anular.
+
+Filtros por:
+
+Número de factura.
+
+Fecha.
+
+Estado de la venta.
+
+Estado del pago.
+
+Validación de inventario tanto en JavaScript como en PHP.
+
+--------------------------------------------------
+
+VALIDACIONES
+
+No permite registrar ventas vacías.
+
+No permite vender cantidades mayores al stock.
+
+No permite cantidades menores a 1.
+
+No permite registrar productos inexistentes.
+
+No permite registrar productos de otra tienda.
+
+Los productos sin stock aparecen en la búsqueda pero no pueden agregarse.
+
+Si el stock cambia mientras otro usuario vende, PHP vuelve a validar antes de registrar la venta.
+
+Todas las operaciones críticas utilizan transacciones MySQL.
+
+--------------------------------------------------
+
+ESTADOS DE LA VENTA
+
+ACTIVA
+
+ANULADA
+
+--------------------------------------------------
+
+ESTADOS DEL PAGO
+
+PAGADA
+
+PARCIAL
+
+PENDIENTE
+
+--------------------------------------------------
+
+ESTRUCTURA
+
+php/
+
+ventas/
+
+crear.php
+
+guardar.php
+
+ver.php
+
+index.php
+
+eliminar.php
+
+js/
+
+ventas_crear.js
+
+css/
+
+php_ventas_crear.css
+
+--------------------------------------------------
+
+RUTAS
+
+Crear venta
+
+php/ventas/crear.php?tienda_id=ID
+
+Guardar venta
+
+php/ventas/guardar.php
+
+Ver factura
+
+php/ventas/ver.php?venta_id=ID
+
+Historial
+
+php/ventas/index.php?tienda_id=ID
+
+Anular venta
+
+php/ventas/eliminar.php?venta_id=ID
+
+--------------------------------------------------
+
+TABLAS UTILIZADAS
+
+usuarios
+
+tiendas
+
+productos
+
+ventas
+
+detalle_venta
+
+--------------------------------------------------
+
+CAMPOS IMPORTANTES
+
+ventas
+
+venta_id
+
+tienda_id
+
+usuario_id
+
+cliente_id
+
+subtotal
+
+total
+
+monto_pagado
+
+estado
+
+estado_pago
+
+fecha_creacion
+
+detalle_venta
+
+detalle_venta_id
+
+venta_id
+
+producto_id
+
+cantidad
+
+precio_unitario
+
+subtotal
+
+productos
+
+producto_id
+
+nombre
+
+precio
+
+stock
+
+activo
+
+--------------------------------------------------
+
+CONSIDERACIONES
+
+La venta solo puede realizarse sobre tiendas pertenecientes al usuario autenticado.
+
+Todas las modificaciones de inventario se realizan dentro de una transacción.
+
+La anulación devuelve automáticamente el inventario.
+
+Actualmente no existe integración con el módulo de clientes ni con el sistema de deudas.
+
+El módulo quedó preparado para futuras integraciones.
+
+
+
+**STORLINE v1.2** - 2026
+

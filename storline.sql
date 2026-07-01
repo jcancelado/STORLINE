@@ -107,3 +107,70 @@ CREATE INDEX idx_tienda_deuda ON `deudas`(`tienda_id`);
 CREATE INDEX idx_cliente_deuda ON `deudas`(`cliente_id`);
 CREATE INDEX idx_email_usuarios ON `usuarios`(`email`);
 CREATE INDEX idx_email_clientes ON `clientes`(`email`);
+
+--tabla ventas
+CREATE TABLE `ventas` (
+  `venta_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID único de la venta',
+  `tienda_id` int(11) NOT NULL COMMENT 'ID de la tienda donde se realizó la venta',
+  `usuario_id` int(11) NOT NULL COMMENT 'Usuario que registró la venta',
+  `cliente_id` int(11) DEFAULT NULL COMMENT 'Cliente asociado (solo para ventas a crédito o fiado)',
+  `subtotal` decimal(10,2) NOT NULL DEFAULT 0.00 COMMENT 'Subtotal de la venta',
+  `descuento` decimal(10,2) NOT NULL DEFAULT 0.00 COMMENT 'Descuento aplicado',
+  `total` decimal(10,2) NOT NULL COMMENT 'Total final de la venta',
+  `estado` enum('ACTIVA','ANULADA') NOT NULL DEFAULT 'ACTIVA' COMMENT 'Estado de la venta',
+  `observaciones` text DEFAULT NULL COMMENT 'Observaciones adicionales',
+  `fecha_creacion` timestamp DEFAULT CURRENT_TIMESTAMP COMMENT 'Fecha de creación de la venta',
+
+  PRIMARY KEY (`venta_id`),
+
+  KEY `idx_tienda` (`tienda_id`),
+  KEY `idx_usuario` (`usuario_id`),
+  KEY `idx_cliente` (`cliente_id`),
+
+  CONSTRAINT `fk_ventas_tienda`
+    FOREIGN KEY (`tienda_id`)
+    REFERENCES `tiendas` (`tienda_id`)
+    ON DELETE CASCADE,
+
+  CONSTRAINT `fk_ventas_usuario`
+    FOREIGN KEY (`usuario_id`)
+    REFERENCES `usuarios` (`usuario_id`)
+    ON DELETE CASCADE,
+
+  CONSTRAINT `fk_ventas_cliente`
+    FOREIGN KEY (`cliente_id`)
+    REFERENCES `clientes` (`cliente_id`)
+    ON DELETE SET NULL
+
+) ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_general_ci;
+
+
+-- tablas detalles ventas
+CREATE TABLE `detalle_venta` (
+  `detalle_venta_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID único del detalle de venta',
+  `venta_id` int(11) NOT NULL COMMENT 'ID de la venta',
+  `producto_id` int(11) NOT NULL COMMENT 'Producto vendido',
+  `cantidad` int(11) NOT NULL COMMENT 'Cantidad vendida',
+  `precio_unitario` decimal(10,2) NOT NULL COMMENT 'Precio unitario al momento de la venta',
+  `subtotal` decimal(10,2) NOT NULL COMMENT 'Subtotal del producto',
+
+  PRIMARY KEY (`detalle_venta_id`),
+
+  KEY `idx_venta` (`venta_id`),
+  KEY `idx_producto` (`producto_id`),
+
+  CONSTRAINT `fk_detalle_venta_venta`
+    FOREIGN KEY (`venta_id`)
+    REFERENCES `ventas` (`venta_id`)
+    ON DELETE CASCADE,
+
+  CONSTRAINT `fk_detalle_venta_producto`
+    FOREIGN KEY (`producto_id`)
+    REFERENCES `productos` (`producto_id`)
+    ON DELETE RESTRICT
+
+) ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_general_ci;

@@ -1,0 +1,187 @@
+body{
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background:#f4f4f4;
+
+    margin:0;
+
+}
+
+header{
+
+    background:#1f2937;
+
+    color:white;
+
+    padding:20px;
+
+}
+
+.container{
+
+    width:90%;
+
+    max-width:1100px;
+
+    margin:30px auto;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:10px;
+
+}
+
+.back-link{
+
+    text-decoration:none;
+
+    color:#2563eb;
+
+    font-weight:bold;
+
+}
+
+.buscador{
+
+    margin:25px 0;
+
+}
+
+.buscador input{
+
+    width:100%;
+
+    padding:12px;
+
+    font-size:16px;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+th{
+
+    background:#e5e7eb;
+
+}
+
+th,
+td{
+
+    padding:12px;
+
+    border:1px solid #ddd;
+
+    text-align:center;
+
+}
+
+.totales{
+
+    margin-top:25px;
+
+    text-align:right;
+
+}
+
+.btn-registrar{
+
+    margin-top:20px;
+
+    width:100%;
+
+    padding:15px;
+
+    background:#16a34a;
+
+    color:white;
+
+    border:none;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    border-radius:6px;
+
+}
+
+.btn-registrar:hover{
+
+    background:#15803d;
+
+}
+
+.resultados-busqueda{
+    border:1px solid #ccc;
+    border-top:none;
+    background:#fff;
+    max-height:250px;
+    overflow-y:auto;
+    display:none;
+}
+
+.resultado-item{
+    padding:12px;
+    cursor:pointer;
+    border-bottom:1px solid #eee;
+}
+
+.resultado-item:hover{
+    background:#f5f5f5;
+}
+
+.resultado-item:last-child{
+    border-bottom:none;
+}
+
+.acciones-venta{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+.btn-vaciar{
+
+    flex:1;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:6px;
+
+    background:#dc2626;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+}
+
+.btn-vaciar:hover{
+
+    background:#b91c1c;
+
+}
+
+.btn-registrar{
+
+    flex:2;
+
+}
